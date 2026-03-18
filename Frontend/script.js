@@ -12,6 +12,9 @@ let sessionId = null
 let moodAsked = false
 let isBotTyping = false
 
+/* 🔥 YOUR BACKEND URL */
+const API_URL = "https://mindease-ai-chatbot-zyts.onrender.com"
+
 /* =========================
    ADD MESSAGE
 ========================= */
@@ -132,12 +135,12 @@ chatMessages.scrollTop = chatMessages.scrollHeight
 }
 
 /* =========================
-   SEND MESSAGE (LOCK SEND ONLY)
+   SEND MESSAGE
 ========================= */
 
 async function sendMessage(){
 
-if(isBotTyping) return   // 🔥 BLOCK SEND
+if(isBotTyping) return
 
 const text = input.value.trim()
 if(!text) return
@@ -149,7 +152,6 @@ welcomeScreen.style.display = "none"
 addMessage(text, "user")
 input.value = ""
 
-/* 🔒 LOCK SEND ONLY */
 isBotTyping = true
 setSendState(true)
 
@@ -163,7 +165,7 @@ chatMessages.scrollTop = chatMessages.scrollHeight
 
 try{
 
-const res = await fetch("http://127.0.0.1:8000/chat",{
+const res = await fetch(`${API_URL}/chat`,{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
@@ -182,7 +184,7 @@ typingBubble.remove()
 addMessage(data.reply, "ai")
 
 /* crisis */
-if(data.reply.includes("not alone") || data.reply.includes("immediate danger")){
+if(data.reply && (data.reply.includes("not alone") || data.reply.includes("immediate danger"))){
 showCrisisSupport()
 isBotTyping = false
 setSendState(false)
@@ -202,7 +204,6 @@ addMessage("Server connection error", "ai")
 
 }
 
-/* 🔓 UNLOCK SEND */
 isBotTyping = false
 setSendState(false)
 
@@ -217,7 +218,7 @@ sendBtn.onclick = sendMessage
 input.addEventListener("keydown", (e)=>{
 if(e.key === "Enter"){
 if(isBotTyping){
-e.preventDefault()   // 🔥 BLOCK ENTER
+e.preventDefault()
 return
 }
 sendMessage()
@@ -355,7 +356,7 @@ addMessage("Thanks for sharing that. Want to tell me more?", "ai")
 }, 1000)
 
 try{
-await fetch("http://127.0.0.1:8000/mood",{
+await fetch(`${API_URL}/mood`,{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
