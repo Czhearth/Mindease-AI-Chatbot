@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MindEase</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+<div class="logo-container">
+
+<img src="logo.png" id="logoBtn" class="logo-img">
+
+<div id="homeBtn" class="logo-text">MindEase</div>
+
+</div>
+
+<div class="nav-buttons">
+
+<button class="login-btn">Log In</button>
+<button class="signup-btn">Sign Up</button>
+
+<button id="themeToggle" class="theme-toggle">🌙</button>
+
+</div>
+
+</header>
+
+
+<main class="main-container">
+
+<div id="welcomeScreen">
+
+<h1>Welcome to MindEase</h1>
+
+<p>How can I support you today?</p>
+
+<div class="support-grid">
+
+<button class="support-card" onclick="quickMessage('I feel anxious and on edge')">
+Feeling on edge
+</button>
+
+<button class="support-card" onclick="quickMessage('I feel low and unmotivated')">
+Low mood
+</button>
+
+<button class="support-card" onclick="quickMessage('I need general support')">
+General support
+</button>
+
+<button class="support-card" onclick="quickMessage('I feel stressed')">
+Feeling stressed
+</button>
+
+</div>
+
+</div>
+
+<div id="chatMessages"></div>
+
+</main>
+
+
+<!-- EXERCISES POPUP -->
+
+<div id="exercisePopup" class="exercise-popup">
+
+<div class="exercise-title">Exercises</div>
+
+<div onclick="breathingExercise()" class="exercise-item">
+🫁 Breathing Exercise
+</div>
+
+<div onclick="groundingExercise()" class="exercise-item">
+🌿 Grounding Exercise
+</div>
+
+<div onclick="gratitudeExercise()" class="exercise-item">
+💙 Gratitude Reflection
+</div>
+
+</div>
+
+
+<div class="chat-input">
+
+<button id="toolBtn" class="tool-btn">+</button>
+
+<input id="messageInput" placeholder="Ask a question or describe your situation...">
+
+<button id="sendBtn" class="send-btn">➤</button>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
